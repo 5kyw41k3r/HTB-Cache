@@ -1,0 +1,98 @@
+Hi there,
+This is log/writeup for the HTB machine "Cache"
+
+Note: Please add hms.htb with machine ip the the file /etc/hosts as the login page 
+should prompt only when you visit the hms.htb page. 
+
+
+Let's start,
+I started with an nmap scan. The file to view should be nmap.txt
+
+
+After that, I saw what was on the port 80(which was open btw)
+I used a tool called dirsearch to find the login panel.
+
+Then by using the inspect element, I found out about the username and password.
+(see functionality.txt)
+ 
+The problem was that the user could not do anything. So there was no point in
+trying the use the web panel.(see panel_screenshot.png)
+
+I now went to the author page and used cewl to make a wordlist. If you do not know
+what cewl is, then let me describe it. It is a tool which you can use to make 
+wordlists by fetching out every single wordon the page.
+
+cewl -w wordlist.txt -d 10 -m 1 http://10.10.10.188/author.html
+
+The above command will dump everything that the tool finds on the page(author.html
+in my case) into wordlist.txt. The `-d` parameter will specify the depth the tool 
+should spider and the `-m` parameter is for letting the tool know the minimum word 
+characters that should be there. The `-w` is for specifying the output file. You 
+can refer "wordlist.txt" too.
+
+
+wfuzz -w wordlist.txt -H "HOST: FUZZ.htb" -u http://10.10.10.188/ --hc 400 --hh 8193
+
+wfuzz is a directory enumeration tool that tells me the hostname(only in this case)
+of the target.(see wfuzz_host.txt)
+
+This is when the `note` at the top of writeup comes into play. When we add hms.htb 
+to /etc/hosts, the hms login is now revealed.(The main one).
+
+
+Let's searchsploit!(see searchsploit_output.txt)
+
+We can see sqli. We will exploit it. When we use burp to intercept the request
+in burp, we can add an sql payload(1') to the eid parameter. And an sql error gets 
+thrown.
+
+Before we exploit, we need to put the request in a txt file. So sqlmap can identify
+it.(See req.txt)
+
+We will use sqlmap to exploit the db.
+sqlmap -r req.txt --dbs --batch
+enumatrion after that...
+(see sqlmapoutput.txt)
+
+After that, you need to destroy the hash(not literally =) ) with john x rockyou.txt
+
+sudo john -w=/usr/share/wordlists/rockyou.txt hash 
+
+Got the user:pass(openemr_admin:xxxxxx)
+login to panel and select administration>files
+now go to revshell.png to refer the code.(change the ip and port!)
+
+start netcat listner:
+netcat -lvnp 4444
+
+and now save the code.
+now headover to:http://hms.htb/sites/default/letter_templates/custom_pdf.php
+to get the shell (see shellyay.png)
+
+
+Now to get the user flag, su to ash by the creds which we found earlier.
+
+If you get- 
+su: must be run from terminal
+then do not worry, go here to find your answer:
+https://forum.hackthebox.eu/discussion/1713/su-must-be-run-from-a-terminal
+but if you are lazy, then I found the solution for you,:)
+/usr/bin/script -qc /bin/bash /dev/null
+
+
+cool!
+
+now su ash
+and then creds from functionality.txt(H@v3_fun)
+
+ash shell!!!!
+
+cd
+cat user.txt
+e38a8eacd33df3f389d75058f19a500d
+
+
+
+Using this blog i was able to perform privesc:)
+https://www.hackingarticles.in/penetration-testing-on-memcached-server/
+

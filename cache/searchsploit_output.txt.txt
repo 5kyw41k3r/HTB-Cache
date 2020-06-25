@@ -1,0 +1,33 @@
+kali ~/HTB/cache # searchsploit openemr
+---------------------------------------------------- ---------------------------------
+ Exploit Title                                      |  Path
+---------------------------------------------------- ---------------------------------
+OpenEMR - 'site' Cross-Site Scripting               | php/webapps/38328.txt
+OpenEMR - Arbitrary '.PHP' File Upload (Metasploit) | php/remote/24529.rb
+OpenEMR 2.8.1 - 'fileroot' Remote File Inclusion    | php/webapps/1886.txt
+OpenEMR 2.8.1 - 'srcdir' Multiple Remote File Inclu | php/webapps/2727.txt
+OpenEMR 2.8.2 - 'Import_XML.php' Remote File Inclus | php/webapps/29556.txt
+OpenEMR 2.8.2 - 'Login_Frame.php' Cross-Site Script | php/webapps/29557.txt
+OpenEMR 3.2.0 - SQL Injection / Cross-Site Scriptin | php/webapps/15836.txt
+OpenEMR 4 - Multiple Vulnerabilities                | php/webapps/18274.txt
+OpenEMR 4.0 - Multiple Cross-Site Scripting Vulnera | php/webapps/36034.txt
+OpenEMR 4.0.0 - Multiple Vulnerabilities            | php/webapps/17118.txt
+OpenEMR 4.1 - '/contrib/acog/print_form.php?formnam | php/webapps/36650.txt
+OpenEMR 4.1 - '/Interface/fax/fax_dispatch.php?File | php/webapps/36651.txt
+OpenEMR 4.1 - '/Interface/patient_file/encounter/lo | php/webapps/36649.txt
+OpenEMR 4.1 - '/Interface/patient_file/encounter/tr | php/webapps/36648.txt
+OpenEMR 4.1 - 'note' HTML Injection                 | php/webapps/38654.txt
+OpenEMR 4.1.1 - 'ofc_upload_image.php' Arbitrary Fi | php/webapps/24492.php
+OpenEMR 4.1.1 Patch 14 - Multiple Vulnerabilities   | php/webapps/28329.txt
+OpenEMR 4.1.1 Patch 14 - SQL Injection / Privilege  | php/remote/28408.rb
+OpenEMR 4.1.2(7) - Multiple SQL Injections          | php/webapps/35518.txt
+OpenEMR 5.0.0 - OS Command Injection / Cross-Site S | php/webapps/43232.txt
+OpenEMR 5.0.1 - Remote Code Execution               | php/webapps/48515.py
+OpenEMR 5.0.1.3 - (Authenticated) Arbitrary File Ac | linux/webapps/45202.txt
+OpenEMR < 5.0.1 - (Authenticated) Remote Code Execu | php/webapps/45161.py
+OpenEMR Electronic Medical Record Software 3.2 - Mu | php/webapps/14011.txt
+Openemr-4.1.0 - SQL Injection                       | php/webapps/17998.txt
+---------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+kali ~/HTB/cache # 
+
